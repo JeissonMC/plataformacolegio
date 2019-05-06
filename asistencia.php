@@ -1,0 +1,105 @@
+<?php
+
+$mysqli = new mysqli('localhost', 'root', '', 'colegio');
+?>
+<!DOCTYPE>
+<html lang="en">
+  <head>
+    <title>Asistencia</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.7/dist/css/bootstrap-select.min.css">
+
+
+  </head>
+  <body style="
+    background-color: #EFF8FB;
+">
+    <div  class="col-md-12">
+
+      <center>  <H2 class="lead" style="font-size: 36px">MODULO DE ASISTENCIA</H2></center>
+    </div>
+
+    <br><br>
+
+    <div class="container"  style="
+    max-width: 700;background: white;
+">
+  <br><br><br>
+      <div class="row" ></div>
+    <div class="col-sm-12" style="height: 70px;">
+
+     <input type="date" name="Fecha" class="form-control">
+    </div>
+    <div class="col-sm-12" style="height:70px;">
+      <select id="materias" class="selectpicker" multiple title="Seleccione Materia" data-width="100%">
+        <option value="0">Seleccione Materia:</option>
+        <?php
+$query = $mysqli->query("SELECT * FROM materias");
+while ($valores2 = mysqli_fetch_array($query)) {
+    echo '<option value="' . $valores2[id] . '">' . $valores2[Nombre] . '</option>';
+}
+?>
+      </select>
+    </div>
+    <div  class="col-sm-12" style="height:70px;">
+      <input type="text" class="form-control" id="cod_docente" aria-describedby="emailHelp" placeholder="Cedula Profesor">
+    </div>
+    <div class="col-sm-12" style="height:130px;">
+      <form action="">
+       <div class="form-group">
+        <select  id="grados" class="selectpicker"   data-width="100%" name="customers" onchange="showestudiantes(this.value)">
+          <option value="">Seleccione grado</option>
+          <option value="6A">6A</option>
+          <option value="7A ">7A</option>
+          <option value="8A ">8A</option>
+          <option value="9B ">9B</option>
+          <option value="10A ">10A</option>
+           <option value="11A ">11A</option>
+        </select>
+        </div>
+
+      </form>
+      <br>
+    </div>
+    </div>
+  </div>
+    <div class="lead">
+      <center> <div id="txtHint" class="col-md-12">Seleccione grado para la toma de asistencia</div></center>
+
+    </div>
+
+
+  </div>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.7/dist/js/bootstrap-select.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.7/dist/js/i18n/defaults-*.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.0.js"></script>
+
+</body>
+<script>
+function showestudiantes(str) {
+var xhttp;
+if (str == "") {
+document.getElementById("txtHint").innerHTML = "";
+return;
+}
+xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+if (this.readyState == 4 && this.status == 200) {
+document.getElementById("txtHint").innerHTML = this.responseText;
+}
+};
+xhttp.open("GET", "lista.php?q="+str, true);
+xhttp.send();
+}
+</script>
+</html>
