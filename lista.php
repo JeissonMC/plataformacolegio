@@ -19,7 +19,15 @@ echo "<table class='table table-hover'>
     <thead>
 <tr>
 <th scope='col'>Nombre y Apellido</th>
-<th scope='col'>Acciones</th>
+<th scope='col' style='
+    text-align: center;
+''>Asistencia</th>
+<th></th>
+<th scope='col' style='
+    text-align: center;
+''>Jornada Unica</th>
+<th></th>
+<th scope='col'>Observaciones</th>
 <th></th>
 
 </tr>
@@ -38,11 +46,38 @@ if ($stmt->num_rows > 0) {
 ";
         echo "<tr>";
         echo "<td>" . $Nombre . " " . $Apellido . "</td>
-        <td><input class='form-check-input' type='radio'><label class='form-check-label' for='exampleRadios1'>
-    Asistio
-  </label></td><td><input class='form-check-input' type='radio'><label class='form-check-label' for='exampleRadios1'>
-    No Asistio
-  </label></td></tr>";
+        <td>
+            <input class='form-check-input' type='radio'>
+            <label class='form-check-label' for='exampleRadios1'>
+                Asistio
+            </label>
+        </td>
+        <td>
+            <input class='form-check-input' type='radio'>
+            <label class='form-check-label' for='exampleRadios1'>
+                No Asistio
+            </label>
+        </td>
+        <td>
+            <input class='form-check-input' type='radio'>
+            <label class='form-check-label' for='exampleRadios1'>
+                Si  Almorzo
+            </label>
+        </td>
+        <td>
+            <input class='form-check-input' type='radio'>
+            <label class='form-check-label' for='exampleRadios1'>
+                No Almorzo
+            </label>
+        </td>
+        <td>
+
+
+</td>
+
+
+
+  </tr>";
 
     }
     echo "</tbody></table>";
