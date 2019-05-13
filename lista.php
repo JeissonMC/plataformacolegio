@@ -32,56 +32,51 @@ echo "<table class='table table-hover'>
 
 </tr>
 
-    </thead>
-
-
-    "
+    </thead>"
 
 ;
 
 if ($stmt->num_rows > 0) {
-
+    $i = 0;
     while ($stmt->fetch()) {
-        echo "<tbody>
-";
+
+        echo "<tbody>";
         echo "<tr>";
         echo "<td>" . $Nombre . " " . $Apellido . "</td>
         <td>
-            <input class='form-check-input' type='radio'>
-            <label class='form-check-label' for='exampleRadios1'>
+            <input class='form-check-input rasiatencia' type='radio' id='blabla".$i."' name='lsasito".$i."'>
+            <label class='form-check-label' for='blabla".$i."'>
                 Asistio
             </label>
         </td>
         <td>
-            <input class='form-check-input' type='radio'>
-            <label class='form-check-label' for='exampleRadios1'>
+            <input class='form-check-input rasiatencia' type='radio' id='blas".$i."' name='lsasito".$i."'>
+            <label class='form-check-label' for='blas".$i."'>
                 No Asistio
             </label>
         </td>
         <td>
-            <input class='form-check-input' type='radio'>
-            <label class='form-check-label' for='exampleRadios1'>
+            <input class='form-check-input ralmorzo' type='radio' id='almurzla".$i."' name='lalmuero".$i."'>
+            <label class='form-check-label' for='almurzla".$i."'>
                 Si  Almorzo
             </label>
         </td>
         <td>
-            <input class='form-check-input' type='radio'>
-            <label class='form-check-label' for='exampleRadios1'>
+            <input class='form-check-input ralmorzo' type='radio' id='almurzlano".$i."' name='lalmuero".$i."'>
+            <label class='form-check-label' for='almurzlano".$i."'>
                 No Almorzo
             </label>
         </td>
         <td>
-
-
 </td>
 
 
 
   </tr>";
-
+  $i+=1;
     }
     echo "</tbody></table>";
-    echo "</form></div><div  class='col-md-12'><button type='button' name='Guardar' class='btn btn-outline-success'>Guardar</button></div>";
+    echo "</form></div><div  class='col-md-12'><button type='button' name='Guardar' class='btn btn-outline-success' onclick='sendasistent();'>Guardar</button></div>";
 }
 
 $stmt->close();

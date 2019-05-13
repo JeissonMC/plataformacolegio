@@ -84,7 +84,7 @@ while ($valores2 = mysqli_fetch_array($query)) {
   <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.7/dist/js/i18n/defaults-*.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.0.js"></script>
 
-</body>
+
 <script>
 function showestudiantes(str) {
 var xhttp;
@@ -101,5 +101,40 @@ document.getElementById("txtHint").innerHTML = this.responseText;
 xhttp.open("GET", "lista.php?q="+str, true);
 xhttp.send();
 }
+
+
+function sendasistent() {
+  var dasisted = [];
+ $("tr .rasiatencia").each(function(){
+var asitencia = 0;
+var almuzo = 0;
+  if ($(this).prop("checked")){
+      var ids = $(this).attr("id");
+      if(ids.match(/blabla/)){
+       asitencia = 1;
+      }
+  }
+  var parametros = {
+    "asistencia": asitencia,
+    "almorzzo":almuzo
+  }
+
+  $.ajax({
+    url: "insertasitencia.php",
+    type:"post",
+    data:parametros,
+    success:function(data){
+alert(data);
+    },
+    error:function(){
+
+    }
+  });
+
+
+ });
+
+}
 </script>
+</body>
 </html>
