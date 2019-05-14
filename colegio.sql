@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-05-2019 a las 00:12:22
+-- Tiempo de generación: 14-05-2019 a las 23:54:52
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -119,6 +119,16 @@ CREATE TABLE `materias` (
   `Nombre` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `materias`
+--
+
+INSERT INTO `materias` (`id`, `Nombre`) VALUES
+(1, 'Ingles'),
+(2, 'Biologia'),
+(3, 'Matematicas'),
+(4, 'Espanol');
+
 -- --------------------------------------------------------
 
 --
@@ -202,7 +212,7 @@ ALTER TABLE `docentes`
 -- AUTO_INCREMENT de la tabla `materias`
 --
 ALTER TABLE `materias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `registroexterno`
