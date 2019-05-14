@@ -81,7 +81,7 @@ if (isset($_SESSION['success'])) {
 					</thead>
 					<tbody>
 						<?php
-include_once 'connection.php';
+include_once 'Conexion/connection.php';
 $sql = "SELECT * FROM registroexterno";
 
 //use for MySQLi-OOP
@@ -110,7 +110,7 @@ while ($row = $query->fetch_assoc()) {
 </div>
 
 </body>
-<?php include 'add-modal_personal.php'?>
+<?php include 'Add/add-modal_personal.php'?>
 
 <script src="jquery/jquery.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
