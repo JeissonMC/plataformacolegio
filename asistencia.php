@@ -119,6 +119,9 @@ while ($valores2 = mysqli_fetch_array($query)) {
 //funcion para insertar la asistencia
 
     function sendasistent() {
+
+      var identificacion ="";
+      var alumno = "";
       var fecha = $("#fecharegis").val();
       var cporfer = $("#cod_docente").val();
       var materias,grados;
@@ -126,15 +129,33 @@ while ($valores2 = mysqli_fetch_array($query)) {
         materias = $(this).text();
       });
 
+
+
       $("#grados option:selected").each(function () {
         grados = $(this).text();
       });
 
       var dasisted = [];
-      $("tr .rasiatencia").each(function () {
+      $("tr").each(function () {
+
         var asitencia = 0;
         var almuzo = 0;
-        if ($(this).prop("checked")) {
+
+
+       $(this).find(".identificacion").each(function(){
+
+      identificacion +=$(this).text();
+    });
+
+
+       $(this).find(".alumno").each(function(){
+
+      alumno +=$(this).text();
+    });
+
+       $(this).find(".rasiatencia").each(function(){
+
+ if ($(this).prop("checked")) {
           var ids = $(this).attr("id");
           if (ids.match(/blabla/)) {
             asitencia = 1;
@@ -146,8 +167,10 @@ while ($valores2 = mysqli_fetch_array($query)) {
           "fecha":fecha ,
           "materia":materias,
           "grado":grados,
-           "profe":cporfer
-        }
+           "profe":cporfer,
+           "identificacion":identificacion,
+           "alumno":alumno
+        };
  console.log(parametros);
         $.ajax({
           url: "insertasitencia.php",
@@ -160,9 +183,15 @@ while ($valores2 = mysqli_fetch_array($query)) {
 
           }
         });
-
+parametros = null;_
 
       });
+
+
+    });
+
+
+
 
     }
   </script>

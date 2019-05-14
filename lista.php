@@ -44,8 +44,8 @@ if ($stmt->num_rows > 0) {
         echo "<tbody>";
         echo "<tr>";
         echo "
-        <td>" . $ID . "
-        <td>" . $Nombre . " " . $Apellido . "</td>
+        <td class='identificacion'>" . $ID . "
+        <td class='alumno'>" . $Nombre . " " . $Apellido . "</td>
         <td>
             <input class='form-check-input rasiatencia' type='radio' id='blabla" . $i . "' name='lsasito" . $i . "'>
             <label class='form-check-label' for='blabla" . $i . "'>
