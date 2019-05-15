@@ -15,7 +15,20 @@ $mysqli = new mysqli('localhost', 'root', '', 'colegio');
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.7/dist/css/bootstrap-select.min.css">
+  <style>
+    textarea {
+      resize: none;
+      height: 70px;
+    }
 
+    table tr th {
+      text-align: center;
+    }
+
+    table tr td {
+      text-align: center;
+    }
+  </style>
 
 </head>
 
@@ -41,7 +54,7 @@ $mysqli = new mysqli('localhost', 'root', '', 'colegio');
       <input type="date" name="Fecha" id="fecharegis" class="form-control" require>
     </div>
     <div class="col-sm-12" style="height:70px;">
-      <select id="materias" class="selectpicker"  title="Seleccione Materia" data-width="100%">
+      <select id="materias" class="selectpicker" title="Seleccione Materia" data-width="100%">
         <option value="0">Seleccione una materia:</option>
         <?php
 $query = $mysqli->query("SELECT * FROM materias");
@@ -116,85 +129,100 @@ while ($valores2 = mysqli_fetch_array($query)) {
       xhttp.open("GET", "lista.php?q=" + str, true);
       xhttp.send();
     }
-//funcion para insertar la asistencia
+    //funcion para insertar la asistencia
 
     function sendasistent() {
 
-      var identificacion ="";
-      var alumno = "";
+      var alumno,materias, grados;
       var fecha = $("#fecharegis").val();
       var cporfer = $("#cod_docente").val();
-      var materias,grados;
       $("#materias option:selected").each(function () {
         materias = $(this).text();
       });
-
-
-
       $("#grados option:selected").each(function () {
         grados = $(this).text();
       });
 
-      var dasisted = [];
-      $("tr").each(function () {
 
+      $("tbody tr").each(function () {
         var asitencia = 0;
         var almuzo = 0;
-
-
-       $(this).find(".identificacion").each(function(){
-
-      identificacion =$(this).text();
-    });
-
-
-       $(this).find(".alumno").each(function(){
-
-      alumno =$(this).text();
-    });
-
-       $(".rasiatencia", this).each(function(){
-
- if ($(this).prop("checked")) {
-          var ids = $(this).attr("id");
-          if (ids.match(/blabla/)) {
-            asitencia = 1;
+        var obsrvachion;
+        $(this).find(".alumno").each(function () {
+          alumno = $(this).text();
+        });
+        $(this).find(".obsevation").each(function () {
+          obsrvachion = $(this).val();
+        });
+        $(this).find(".rasiatencia").each(function () {
+          if ($(this).prop("checked")) {
+            var ids = $(this).attr("id");
+            if (ids.match(/blabla/)) {
+              asitencia = 1;
+            }
           }
-        }
+          if ($(this).prop("checked")) {
+            var ids = $(this).attr("id");
+            if (ids.match(/almurzla/)) {
+              almuzo = 1;
+            }
+          }
+        });
+
         var parametros = {
           "asistencia": asitencia,
           "almorzzo": almuzo,
-          "fecha":fecha ,
-          "materia":materias,
-          "grado":grados,
-           "profe":cporfer,
-           "identificacion":identificacion,
-           "alumno":alumno
+          "fecha": fecha,
+          "materia": materias,
+          "grado": grados,
+          "profe": cporfer,
+          "alumno": alumno,
+          "observaciones": obsrvachion
         };
- console.log(parametros);
+        console.log(parametros);
         $.ajax({
-          url: "insertasitencia.php",
+          url: "asistencia.php",
           type: "post",
           data: parametros,
           success: function (data) {
-            alert(data);
+            if(data){
+
+              
+            }else{
+
+            }
           },
           error: function () {
 
           }
         });
-
-
       });
-
-
-    });
-
-
-
-
     }
   </script>
+<?php
+if (isset($_POST['asistencia'])) {
+  require 'Conexion/connection.php';
+  $asistencia    = $_POST['asistencia'];
+  $almorzo    = $_POST['almorzzo'];
+  $fecha  = $_POST['fecha'];
+  $materia = $_POST['materia'];
+  $curso = $_POST['grado'];
+  $profesor  = $_POST['profe'];
+  $estudiante    = $_POST['alumno'];
+  $observacion   = $_POST['observaciones'];
+
+
+
+
+  $sql = "INSERT INTO asistencia (Fecha, Materia, Cedula, Grado, nombrecompleto, Asistio, Jornada, Obervacion) VALUES ('$fecha','$materia',' $profesor',' $curso',' $estudiante',' $asistencia',' $almorzo',' $observacion')";
+
+  if ($conn->query($sql)) {
+     echo true;
+  } else {
+      echo false;
+  }
+}
+?>
 </body>
 
 </html>

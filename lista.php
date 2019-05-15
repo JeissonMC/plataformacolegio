@@ -59,18 +59,19 @@ if ($stmt->num_rows > 0) {
             </label>
         </td>
         <td>
-            <input class='form-check-input ralmorzo' type='radio' id='almurzla" . $i . "' name='lalmuero" . $i . "'>
+            <input class='form-check-input rasiatencia' type='radio' id='almurzla" . $i . "' name='lalmuero" . $i . "'>
             <label class='form-check-label' for='almurzla" . $i . "'>
                 Si  Almorzo
             </label>
         </td>
         <td>
-            <input class='form-check-input ralmorzo' type='radio' id='almurzlano" . $i . "' name='lalmuero" . $i . "'>
+            <input class='form-check-input rasiatencia' type='radio' id='almurzzlano" . $i . "' name='lalmuero" . $i . "'>
             <label class='form-check-label' for='almurzlano" . $i . "'>
                 No Almorzo
             </label>
         </td>
         <td>
+        <textarea name='' class='obsevation' cols='30' rows='10' style=''></textarea>
 </td>
 
 
