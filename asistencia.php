@@ -144,16 +144,16 @@ while ($valores2 = mysqli_fetch_array($query)) {
 
        $(this).find(".identificacion").each(function(){
 
-      identificacion +=$(this).text();
+      identificacion =$(this).text();
     });
 
 
        $(this).find(".alumno").each(function(){
 
-      alumno +=$(this).text();
+      alumno =$(this).text();
     });
 
-       $(this).find(".rasiatencia").each(function(){
+       $(".rasiatencia", this).each(function(){
 
  if ($(this).prop("checked")) {
           var ids = $(this).attr("id");
@@ -183,7 +183,7 @@ while ($valores2 = mysqli_fetch_array($query)) {
 
           }
         });
-parametros = null;_
+
 
       });
 
