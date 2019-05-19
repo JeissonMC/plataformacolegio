@@ -1,6 +1,9 @@
 <?php
 
 $mysqli = new mysqli('localhost', 'root', '', 'colegio');
+
+session_start();
+
 ?>
 <!DOCTYPE>
 <html lang="en">

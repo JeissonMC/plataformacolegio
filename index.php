@@ -88,7 +88,7 @@
 				      <div class="caption">
 				        <h3 class="text-center">Estadisticas</h3>
 
-				        <p class="text-center"><a href="#" class="btn btn-primary" role="button">Ingresar</a></p>
+				        <p class="text-center"><a href="estadisticas.php" class="btn btn-primary" role="button">Ingresar</a></p>
 				      </div>
 				    </div>
 				</article>
@@ -111,29 +111,30 @@
         </button>
       </div>
       <div class="modal-body">
-        <form class="kt-form" action="">
+        <form class="kt-form" action="login/logueo.php" method="POST">
 				<div class="kt-portlet__body">
 					<div class="form-group validated">
-						 <input type="text" class="form-control is-valid" id="validationServer01" placeholder="Usuario" required>
+						 <input type="text" class="form-control is-valid" id="Usuario" name="Usuario" placeholder="Usuario" required>
       <div class="valid-feedback">
         Bien!
       </div>
 					</div>
 					<div class="form-group validated">
 
-						<input type="password" class="form-control is-invalid" id="inputWarning1" placeholder="Contraseña">
+						<input type="password" class="form-control is-invalid" id="Clave" name="Clave" placeholder="Contraseña">
 						<div class="invalid-feedback">Algo esta mal.</div>
 
 					</div>
 				</div>
 
-			</form>
+			
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-success">Ingresar</button>
+        <button type="submit" class="btn btn-success">Ingresar</button>
       </div>
+      </form>
     </div>
   </div>
 </div>
