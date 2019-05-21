@@ -1,3 +1,12 @@
+
+<?php 
+
+
+session_start();
+
+
+ ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -61,8 +70,8 @@
 				       <h3 class="text-center">Asistencia y Observaciones</h3>
 				      <div class="caption">
 
-				        <p class="text-center"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#login">Ingresar</button>
-				        	<a href="asistencia.php" class="btn btn-danger">asistencia</a>
+				      
+				        	<p class="text-center"><a href="asistencia.php" class="btn btn-danger">asistencia</a></p>
 
 				      </div>
 
@@ -97,47 +106,6 @@
 		</div>
 	</section>
 
-<!-- Button trigger modal -->
-
-
-<!-- Modal -->
-<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">INICIAR SESION</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form class="kt-form" action="login/logueo.php" method="POST">
-				<div class="kt-portlet__body">
-					<div class="form-group validated">
-						 <input type="text" class="form-control is-valid" id="Usuario" name="Usuario" placeholder="Usuario" required>
-      <div class="valid-feedback">
-        Bien!
-      </div>
-					</div>
-					<div class="form-group validated">
-
-						<input type="password" class="form-control is-invalid" id="Clave" name="Clave" placeholder="Contraseña">
-						<div class="invalid-feedback">Algo esta mal.</div>
-
-					</div>
-				</div>
-
-			
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-success">Ingresar</button>
-      </div>
-      </form>
-    </div>
-  </div>
-</div>
 </body>
 
 

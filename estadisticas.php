@@ -1,144 +1,202 @@
-<!doctype html>
+<!DOCTYPE HTML>
 <html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<title>Estadisticas</title>
 
-<head>
-	<title>Bar Chart</title>
-	<script src="dist/Chart.min.js"></script>
-	<script src="test/specs/utils.js"></script>
-	<style>
-	canvas {
-		-moz-user-select: none;
-		-webkit-user-select: none;
-		-ms-user-select: none;
-	}
-	</style>
-</head>
+		<style type="text/css">
 
-<body>
-	<div id="container" style="width: 75%;">
-		<canvas id="canvas"></canvas>
-	</div>
-	<button id="randomizeData">Randomize Data</button>
-	<button id="addDataset">Add Dataset</button>
-	<button id="removeDataset">Remove Dataset</button>
-	<button id="addData">Add Data</button>
-	<button id="removeData">Remove Data</button>
+		</style>
+	</head>
+	<body>
+<script src="Highcharts/code/highcharts.js"></script>
+<script src="Highcharts/code/modules/exporting.js"></script>
+<script src="Highcharts/code/modules/export-data.js"></script>
+
+
+
+
+
+<div id="container" style="width: 600px; height: 400px; margin: 0 auto; padding-right:900px; "></div>
+
+<div id="container2" style="width: 600px; height: 400px; margin: 0 auto; padding-right:900px; "></div>
+
+
+<div id="container1" style="width: 600px; height: 400px; margin: 0 auto; padding-left: 600px; margin-top: -800px;"></div>
+
+
+
+		<script type="text/javascript">
+Highcharts.chart('container', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Inasistencias por grado'
+    },
+    subtitle: {
+        text: ''
+    },
+    xAxis: {
+        type: 'category',
+        labels: {
+            rotation: -45,
+            style: {
+                fontSize: '13px',
+                fontFamily: 'Verdana, sans-serif'
+            }
+        }
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: ''
+        }
+    },
+    legend: {
+        enabled: false
+    },
+    tooltip: {
+        pointFormat: 'grados: <b>{point.y:.1f} millions</b>'
+    },
+    series: [{
+        name: 'Population',
+        data: [
+            ['Shanghai', 24.2],
+            ['Beijing', 20.8],
+            ['Karachi', 14.9],
+            ['Shenzhen', 13.7],
+            ['Guangzhou', 13.1],
+            ['Istanbul', 12.7],
+            ['Mumbai', 12.4],
+            ['Moscow', 12.2],
+            ['São Paulo', 12.0],
+            ['Delhi', 11.7],
+            ['Kinshasa', 11.5],
+            ['Tianjin', 11.2],
+            ['Lahore', 11.1],
+            ['Jakarta', 10.6],
+            ['Dongguan', 10.6],
+            ['Lagos', 10.6],
+            ['Bengaluru', 10.3],
+            ['Seoul', 9.8],
+            ['Foshan', 9.3],
+            ['Tokyo', 9.3]
+        ],
+        dataLabels: {
+            enabled: true,
+            rotation: -90,
+            color: '#FFFFFF',
+            align: 'right',
+            format: '{point.y:.1f}', // one decimal
+            y: 10, // 10 pixels down from the top
+            style: {
+                fontSize: '13px',
+                fontFamily: 'Verdana, sans-serif'
+            }
+        }
+    }]
+});
+		</script>
+
+
 	<script>
-		var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-		var color = Chart.helpers.color;
-		var barChartData = {
-			labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-			datasets: [{
-				label: 'Dataset 1',
-				backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-				borderColor: window.chartColors.red,
-				borderWidth: 1,
-				data: [
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor()
-				]
-			}, {
-				label: 'Dataset 2',
-				backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
-				borderColor: window.chartColors.blue,
-				borderWidth: 1,
-				data: [
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor()
-				]
-			}]
+		
 
-		};
+Highcharts.chart('container1', {
+  chart: {
+    type: 'line'
+  },
+  title: {
+    text: 'Inasistencias por materia'
+  },
+  subtitle: {
+    text: ''
+  },
+  xAxis: {
+    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  },
+  yAxis: {
+    title: {
+      text: ''
+    }
+  },
+  plotOptions: {
+    line: {
+      dataLabels: {
+        enabled: true
+      },
+      enableMouseTracking: false
+    }
+  },
+  series: [{
+    name: 'Tokyo',
+    data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+  }, {
+    name: 'London',
+    data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+  }]
+});
 
-		window.onload = function() {
-			var ctx = document.getElementById('canvas').getContext('2d');
-			window.myBar = new Chart(ctx, {
-				type: 'bar',
-				data: barChartData,
-				options: {
-					responsive: true,
-					legend: {
-						position: 'top',
-					},
-					title: {
-						display: true,
-						text: 'Chart.js Bar Chart'
-					}
-				}
-			});
-
-		};
-
-		document.getElementById('randomizeData').addEventListener('click', function() {
-			var zero = Math.random() < 0.2 ? true : false;
-			barChartData.datasets.forEach(function(dataset) {
-				dataset.data = dataset.data.map(function() {
-					return zero ? 0.0 : randomScalingFactor();
-				});
-
-			});
-			window.myBar.update();
-		});
-
-		var colorNames = Object.keys(window.chartColors);
-		document.getElementById('addDataset').addEventListener('click', function() {
-			var colorName = colorNames[barChartData.datasets.length % colorNames.length];
-			var dsColor = window.chartColors[colorName];
-			var newDataset = {
-				label: 'Dataset ' + (barChartData.datasets.length + 1),
-				backgroundColor: color(dsColor).alpha(0.5).rgbString(),
-				borderColor: dsColor,
-				borderWidth: 1,
-				data: []
-			};
-
-			for (var index = 0; index < barChartData.labels.length; ++index) {
-				newDataset.data.push(randomScalingFactor());
-			}
-
-			barChartData.datasets.push(newDataset);
-			window.myBar.update();
-		});
-
-		document.getElementById('addData').addEventListener('click', function() {
-			if (barChartData.datasets.length > 0) {
-				var month = MONTHS[barChartData.labels.length % MONTHS.length];
-				barChartData.labels.push(month);
-
-				for (var index = 0; index < barChartData.datasets.length; ++index) {
-					// window.myBar.addData(randomScalingFactor(), index);
-					barChartData.datasets[index].data.push(randomScalingFactor());
-				}
-
-				window.myBar.update();
-			}
-		});
-
-		document.getElementById('removeDataset').addEventListener('click', function() {
-			barChartData.datasets.pop();
-			window.myBar.update();
-		});
-
-		document.getElementById('removeData').addEventListener('click', function() {
-			barChartData.labels.splice(-1, 1); // remove the label first
-
-			barChartData.datasets.forEach(function(dataset) {
-				dataset.data.pop();
-			});
-
-			window.myBar.update();
-		});
 	</script>
-</body>
 
+
+<script type="text/javascript">
+// Build the chart
+Highcharts.chart('container2', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Inasistencia por edad'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: false
+            },
+            showInLegend: true
+        }
+    },
+    series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: [{
+            name: 'Chrome',
+            y: 61.41,
+            sliced: true,
+            selected: true
+        }, {
+            name: 'Internet Explorer',
+            y: 11.84
+        }, {
+            name: 'Firefox',
+            y: 10.85
+        }, {
+            name: 'Edge',
+            y: 4.67
+        }, {
+            name: 'Safari',
+            y: 4.18
+        }, {
+            name: 'Other',
+            y: 7.05
+        }]
+    }]
+});
+		</script>
+
+
+
+	</body>
 </html>

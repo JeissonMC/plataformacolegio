@@ -26,7 +26,7 @@ if(isset($_FILES["name"])){
                 $x_Curso = $sheet->getCell("E".$row)->getValue();
                 $x_Telefono = $sheet->getCell("F".$row)->getValue();
                  $x_Direccion = $sheet->getCell("G".$row)->getValue();
-                $sql = "insert into alumnos (Codigo, Nombre, Apellido, Edad, Curso, Telefono, Direccion) value ";
+                $sql = "INSERT INTO alumnos (Codigo, Nombre, Apellido, Edad, Curso, Telefono, Direccion) value ";
                 $sql .= " (\'$x_Codigo\',\'$x_Nombre\',\'$x_Apellido\',\'$x_Edad\',\'$x_Curso\',\'$x_Telefono\', \'$x_Direccion\', NOW())";
                $conn->query($sql);
             }
