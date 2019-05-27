@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-05-2019 a las 23:54:52
+-- Tiempo de generación: 27-05-2019 a las 23:41:06
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -64,11 +64,27 @@ CREATE TABLE `asistencia` (
   `Materia` varchar(255) DEFAULT NULL,
   `Cedula` int(11) DEFAULT NULL,
   `Grado` varchar(255) DEFAULT NULL,
-  `Nombre` varchar(255) DEFAULT NULL,
-  `Apellido` varchar(255) DEFAULT NULL,
-  `Asistio` varchar(255) DEFAULT NULL,
-  `Falto` varchar(255) DEFAULT NULL
+  `nombrecompleto` varchar(255) DEFAULT NULL,
+  `Asistio` int(11) DEFAULT NULL,
+  `Jornada` int(11) NOT NULL,
+  `Obervacion` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `asistencia`
+--
+
+INSERT INTO `asistencia` (`Fecha`, `Materia`, `Cedula`, `Grado`, `nombrecompleto`, `Asistio`, `Jornada`, `Obervacion`) VALUES
+('2019-05-27', 'Matematicas', 1055456789, ' 6A', ' Jhon Sneyder', 1, 1, ' mal'),
+('2019-05-27', 'Matematicas', 1055456789, ' 6A', ' Jeisson Moscoso', 0, 1, ' bien'),
+('2019-05-27', 'Matematicas', 1055456789, ' 6A', ' Cristian Gomez', 1, 0, ' regular'),
+('2019-05-27', 'Biologia', 231232, ' 6A', ' Jhon Sneyder', 1, 1, ' mal'),
+('2019-05-27', 'Biologia', 231232, ' 6A', ' Jeisson Moscoso', 0, 0, ' bien'),
+('2019-05-27', 'Biologia', 231232, ' 6A', ' Cristian Gomez', 1, 1, ' regular'),
+('2019-05-27', 'Espanol', 1212, ' 10A', ' Andres Arango ', 1, 1, ' bien'),
+('2019-05-27', 'Espanol', 1212, ' 10A', ' Hector Valencia', 0, 1, ' regukar'),
+('2019-05-27', 'Espanol', 1212, ' 10A', ' Miguel Angel', 0, 0, ' excelente'),
+('2019-05-27', 'Espanol', 1212, ' 10A', ' Maribel moscoso', 1, 1, ' mal');
 
 -- --------------------------------------------------------
 
@@ -80,6 +96,18 @@ CREATE TABLE `cursos` (
   `id` int(11) NOT NULL,
   `Nombre` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `cursos`
+--
+
+INSERT INTO `cursos` (`id`, `Nombre`) VALUES
+(1, '6A'),
+(2, '7A'),
+(3, '8A'),
+(4, '9A'),
+(5, '10A'),
+(6, '11A');
 
 -- --------------------------------------------------------
 
@@ -106,7 +134,7 @@ CREATE TABLE `docentes` (
 --
 
 INSERT INTO `docentes` (`id`, `Cedula`, `Nombre`, `Apellido`, `Profesion`, `Direccion`, `Telefono`, `Materias`, `Cursos`, `Usuario`, `Clave`) VALUES
-(1, '1088345218', 'Carlos', ' Giraldo', ' Ingeniero de  sistemas', ' Mz 1 cs 8', 2147483647, ' Espanol', ' 9A', ' Carlos1 ', ' Carlos1');
+(1, '1088345218', 'Carlos', ' Giraldo', ' Ingeniero de  sistemas', ' Mz 1 cs 8', 2147483647, ' Espanol', ' 9A', ' Carlos1 ', '12345');
 
 -- --------------------------------------------------------
 
@@ -200,7 +228,7 @@ ALTER TABLE `alumnos`
 -- AUTO_INCREMENT de la tabla `cursos`
 --
 ALTER TABLE `cursos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `docentes`
