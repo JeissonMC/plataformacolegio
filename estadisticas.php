@@ -19,17 +19,26 @@
 
 
 
-<div id="container" style="width: 600px; height: 400px; margin: 0 auto; padding-right:900px; "></div>
+<div id="grados" style="width: 600px; height: 400px; margin: 0 auto; padding-right:900px; "></div>
 
-<div id="container2" style="width: 600px; height: 400px; margin: 0 auto; padding-right:900px; "></div>
+<div id="edad" style="width: 600px; height: 400px; margin: 0 auto; padding-right:900px; "></div>
 
 
-<div id="container1" style="width: 600px; height: 400px; margin: 0 auto; padding-left: 600px; margin-top: -800px;"></div>
+<div id="materias" style="width: 600px; height: 400px; margin: 0 auto; padding-left: 600px; margin-top: -800px;"></div>
+
+
+
+
+<?php
+
+include ("Conexion/connection.php");
+
+  ?>
 
 
 
 		<script type="text/javascript">
-Highcharts.chart('container', {
+Highcharts.chart('grados', {
     chart: {
         type: 'column'
     },
@@ -64,7 +73,7 @@ Highcharts.chart('container', {
     series: [{
         name: 'Population',
         data: [
-            ['Shanghai', 24.2],
+            ['6A', 24.2],
             ['Beijing', 20.8],
             ['Karachi', 14.9],
             ['Shenzhen', 13.7],
@@ -105,7 +114,7 @@ Highcharts.chart('container', {
 	<script>
 		
 
-Highcharts.chart('container1', {
+Highcharts.chart('materias', {
   chart: {
     type: 'line'
   },
@@ -134,9 +143,6 @@ Highcharts.chart('container1', {
   series: [{
     name: 'Tokyo',
     data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-  }, {
-    name: 'London',
-    data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
   }]
 });
 
@@ -145,7 +151,7 @@ Highcharts.chart('container1', {
 
 <script type="text/javascript">
 // Build the chart
-Highcharts.chart('container2', {
+Highcharts.chart('edad', {
     chart: {
         plotBackgroundColor: null,
         plotBorderWidth: null,
@@ -153,7 +159,7 @@ Highcharts.chart('container2', {
         type: 'pie'
     },
     title: {
-        text: 'Inasistencia por edad'
+        text: 'Inasistencia por jornada unica	'
     },
     tooltip: {
         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
