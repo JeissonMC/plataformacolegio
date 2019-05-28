@@ -1,5 +1,89 @@
 <?php
-session_start();
+
+
+$conn = mysqli_connect("localhost","root","","colegio");
+require_once('PHPExcel/php-excel-reader/excel_reader2.php');
+require_once('PHPExcel/spreadsheet-reader/SpreadsheetReader.php');
+
+if (isset($_POST["import"]))
+{
+    
+    
+  $allowedFileType = ['application/vnd.ms-excel','text/xls','text/xlsx','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'];
+  
+  if(in_array($_FILES["file"]["type"],$allowedFileType)){
+
+        $targetPath = 'uploads/'.$_FILES['file']['name'];
+        move_uploaded_file($_FILES['file']['tmp_name'], $targetPath);
+        
+        $Reader = new SpreadsheetReader($targetPath);
+        
+        $sheetCount = count($Reader->sheets());
+        for($i=0;$i<$sheetCount;$i++)
+        {
+            
+            $Reader->ChangeSheet($i);
+            
+            foreach ($Reader as $Row)
+            {
+          
+                $Codigo = "";
+                if(isset($Row[0])) {
+                    $Codigo = mysqli_real_escape_string($conn,$Row[0]);
+                }
+                
+                $Nombre = "";
+                if(isset($Row[1])) {
+                    $Nombre = mysqli_real_escape_string($conn,$Row[1]);
+                }
+
+                 $Apellido = "";
+                if(isset($Row[2])) {
+                    $Apellido = mysqli_real_escape_string($conn,$Row[2]);
+                }
+                 $Edad = "";
+                if(isset($Row[3])) {
+                    $Edad = mysqli_real_escape_string($conn,$Row[3]);
+                }
+                 $Curso = "";
+                if(isset($Row[4])) {
+                    $Curso = mysqli_real_escape_string($conn,$Row[4]);
+                }
+                 $Telefono = "";
+                if(isset($Row[5])) {
+                    $Telefono = mysqli_real_escape_string($conn,$Row[5]);
+                }
+                 $Direccion = "";
+                if(isset($Row[6])) {
+                    $Direccion = mysqli_real_escape_string($conn,$Row[6]);
+                }
+                
+                if (!empty($Codigo) || !empty($Nombre)  || !empty($Apellido) ||!empty($Edad)||!empty($Curso) || !empty($Telefono ) || !empty($Direccion)) {
+                    $query = "insert into alumnos(Codigo, Nombre, Apellido, Edad, Curso, Telefono, Direccion) values('".$Codigo."','".$Nombre."','".$Apellido."','".$Edad."','".$Curso."','".$Telefono."','".$Direccion."')";
+                    $result = mysqli_query($conn, $query);
+                
+                    if (! empty($result)) {
+                        $type = "success";
+                        $message = "Excel Data Imported into the Database";
+                    } else {
+                        $type = "error";
+                        $message = "Problem in Importing Excel Data";
+                    }
+                }
+             }
+        
+         }
+  }
+  else
+  { 
+        $type = "error";
+        $message = "Invalid File Type. Upload Excel File.";
+  }
+}
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -108,16 +192,16 @@ while ($row = $query->fetch_assoc()) {
         </button>
       </div>
       <div class="modal-body">
- <form method="post" action="import.php" enctype="multipart/form-data" role="form">
+ <form method="post" action="" enctype="multipart/form-data" role="form" name="frmExcelImport">
   <div>
 
-      <input type="file" name="name"  id="name" placeholder="Archivo (.xlsx)">
+      <input type="file" name="file"  id="file" placeholder="Archivo (.xlsx)">
   </div>
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-primary">Importar Datos</button>
+        <button type="submit" name="import" class="btn btn-primary">Importar Datos</button>
        </div>
 
     </div>

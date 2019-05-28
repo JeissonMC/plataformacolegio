@@ -10,7 +10,7 @@ if(isset($_FILES["name"])){
         $up->Process("./uploads/");
         if($up->processed){
             /// leer el archivo excel
-            require_once 'PHPExcel/Classes/PHPExcel.php';
+            require_once 'PHPExcel/php-excel-reader/excel_reader2.php';
             $archivo = "uploads/".$up->file_dst_name;
             $inputFileType = PHPExcel_IOFactory::identify($archivo);
             $objReader = PHPExcel_IOFactory::createReader($inputFileType);

@@ -54,10 +54,10 @@ session_start();
     <div class="row"></div>
     <div class="col-sm-12" style="height: 70px;">
 
-      <input type="date" name="Fecha" id="fecharegis" class="form-control" require>
+      <input type="date" name="Fecha" id="fecharegis" class="form-control" required>
     </div>
     <div class="col-sm-12" style="height:70px;">
-      <select id="materias" class="selectpicker" title="Seleccione Materia" data-width="100%">
+      <select id="materias" class="selectpicker" title="Seleccione Materia" data-width="100%" required>
         <option value="0">Seleccione una materia:</option>
         <?php
 $query = $mysqli->query("SELECT * FROM materias");
@@ -220,9 +220,10 @@ if (isset($_POST['asistencia'])) {
   $sql = "INSERT INTO asistencia (Fecha, Materia, Cedula, Grado, nombrecompleto, Asistio, Jornada, Obervacion) VALUES ('$fecha','$materia',' $profesor',' $curso',' $estudiante',' $asistencia',' $almorzo',' $observacion')";
 
   if ($conn->query($sql)) {
-     echo true;
+     echo "registrados";
   } else {
       echo false;
+      
   }
 }
 ?>
